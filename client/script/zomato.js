@@ -6,8 +6,9 @@ var data = []
   //helper
   $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) { 
-      if(data.length > 0 && $zomato.is(":visible"))
-      searchZomato(data.length)
+      if(data.length > 0 && $zomato.is(":visible")){
+        searchZomato(data.length)
+      }
     }
   });
   
@@ -20,8 +21,12 @@ var data = []
   function detail(id){
     $zomato.hide()
     $google.show()
+    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTU4MTA0MjU5NH0.Lv4R7J2cahV4d7S_rrN-QtF3fD6iq__yS9DTxQ02nlo"
     $.ajax(`http://localhost:3001/zomato/${id}`,{
-      method: "GET"
+      method: "GET",
+      headers:{
+        token
+      }
     })
     .done(function(result){
       console.log(result)
@@ -42,7 +47,7 @@ var data = []
                             </small>
                             <h6 id="cuisine"></h6>
                             <p class="card-text">
-                              <table class="table">
+                              <table class="table text-light">
                                 <tr>
                                   <td>Address</td>
                                   <td id="address"></td>
@@ -59,8 +64,8 @@ var data = []
                             </p>
                           </div>
                           <div class="card-footer text-center">
-                            <button class="btn text-danger">Favaorite</button>
-                            <button class="btn text-danger" onClick="" type="button" id="close">Close</button>
+                            <button class="btn btn-light" id="like">text</button>
+                            <button class="btn btn-light" onClick="" type="button" id="close">Close</button>
                           </div>
                         </div>
                       </div>`
@@ -76,19 +81,78 @@ var data = []
       $item.find('#votes').append(`(${result.user_rating.votes})`)
       $item.find('#cuisine').append(`${result.cuisines}`)
       $item.find('#address').append(`${result.location.address}`)
-      var link = `<a href="${result.url}">${result.name}</a>`
+      var link = `<a href="${result.url}" class="text-light">${result.name}</a>`
       $item.find('#homepage').append(link)
       $item.find('#close').attr('onClick',`closeDetail()`)
       $item.find('#phone_number').append(`${result.phone_numbers}`)
       $item.find('.card-img').attr('src',result.featured_image)
+
       newLocation(Number(result.location.latitude),Number(result.location.longitude))
       calcRoute(Number(result.location.latitude),Number(result.location.longitude))
       $detail.append($item)
+      console.log(result.userFavorite)
+      if(!result.userFavorite){
+        $item.find('#like').attr('id',`like${result.id}`)
+        var $btnfavorite = $(`#like${result.id}`)
+        $item.find(`#like${result.id}`).html('Like')
+        $btnfavorite.on('click',function(e){
+          e.preventDefault();
+          likeFavorite(result.id)
+        })
+      }else{
+        $item.find('#like').attr('id',`dislike${result.id}`)
+        var $btnfavorite = $(`#dislike${result.id}`)
+        $item.find(`#dislike${result.id}`).html('Dislike')
+        $btnfavorite.on('click',function(e){
+          e.preventDefault();
+          dislikeFavorite(result.userFavorite.RestaurantId,result.id)
+        })
+      }
+      
     })
     .fail(function(err){
       console.log(err)
     })
     
+  }
+
+  function likeFavorite(id){
+    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTU4MTA0MjU5NH0.Lv4R7J2cahV4d7S_rrN-QtF3fD6iq__yS9DTxQ02nlo"
+    $.ajax('http://localhost:3001/restaurant',{
+      method : "POST",
+      headers : {
+        token : token
+      },
+      data : {
+        name : id
+      }
+    })
+    .done(function(result){
+      closeDetail()
+      detail(id)
+      console.log(result.data)
+    })
+    .fail(function(err){
+      console.log(err)
+    })
+  }
+
+  function dislikeFavorite(id,zomatoId){
+    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTU4MTA0MjU5NH0.Lv4R7J2cahV4d7S_rrN-QtF3fD6iq__yS9DTxQ02nlo"
+    $.ajax(`http://localhost:3001/restaurant/${id}`,{
+      method : "DELETE",
+      headers : {
+        token : token
+      },
+    })
+    .done(function(result){
+      closeDetail()
+      detail(zomatoId)
+      console.log(result)
+    })
+    .fail(function(err){
+      console.log(err)
+    })
   }
 
   function loadZomato(){
@@ -101,7 +165,7 @@ var data = []
                 <p class="card-text"></p>
               </div>
               <div class="card-footer text-center">
-                  <button class="btn text-danger" onClick="">Click for detail</button>
+                  <button type="button" class="btn btn-light" onClick="">Click for detail</button>
               </div>
             </div>
           </div>`
@@ -112,7 +176,7 @@ var data = []
       $item.find('.card-title').append(data[i].restaurant.name)
       $item.find('.card-text').append(data[i].restaurant.cuisines)
       $item.find('.card-img-top').attr('src',data[i].restaurant.featured_image)
-      $item.find('.btn.text-danger').attr('onClick',`detail(${data[i].restaurant.id})`)
+      $item.find('.btn.btn-light').attr('onClick',`detail(${data[i].restaurant.id})`)
       $zomatoItems.append($item)
       //console.log(data[i].restaurant)
     }
@@ -123,6 +187,8 @@ var data = []
       method: "GET"
     })
     .done(function(result){
+        $('.spinner-grow').hide()
+        $zomato.show()
         data = data.concat(result.restaurants)
         loadZomato()
     })
