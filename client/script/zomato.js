@@ -21,17 +21,16 @@ var data = []
   function detail(id){
     $zomato.hide()
     $google.show()
-    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTU4MTA0MjU5NH0.Lv4R7J2cahV4d7S_rrN-QtF3fD6iq__yS9DTxQ02nlo"
     $.ajax(`http://localhost:3000/zomato/${id}`,{
       method: "GET",
       headers:{
-        token
+        token : localStorage.getItem('token')
       }
     })
     .done(function(result){
       console.log(result)
       var template = `
-                        <div class="card text-white bg-danger" >
+                        <div class="card text-white bg-danger" style="height:90vh">
                           <img class="card-img" src="" alt="Card image cap" style="height:30vh;">
                           <div class="card-body">
                             <h4 class="card-title">
@@ -117,11 +116,11 @@ var data = []
   }
 
   function likeFavorite(id){
-    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTU4MTA0MjU5NH0.Lv4R7J2cahV4d7S_rrN-QtF3fD6iq__yS9DTxQ02nlo"
-    $.ajax('http://localhost:3001/restaurant',{
+    
+    $.ajax('http://localhost:3000/restaurant',{
       method : "POST",
       headers : {
-        token : token
+        token : localStorage.getItem('token')
       },
       data : {
         name : id
@@ -138,11 +137,11 @@ var data = []
   }
 
   function dislikeFavorite(id,zomatoId){
-    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTU4MTA0MjU5NH0.Lv4R7J2cahV4d7S_rrN-QtF3fD6iq__yS9DTxQ02nlo"
-    $.ajax(`http://localhost:3001/restaurant/${id}`,{
+    
+    $.ajax(`http://localhost:3000/restaurant/${id}`,{
       method : "DELETE",
       headers : {
-        token : token
+        token : localStorage.getItem('token')
       },
     })
     .done(function(result){

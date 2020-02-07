@@ -96,6 +96,7 @@ function register(data) {
 
 function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
+    console.log(id_token)
     $.ajax({
         url: 'http://localhost:3000/googleSignIn',
         method: 'post',
@@ -103,6 +104,7 @@ function onSignIn(googleUser) {
             gToken: id_token
         },
         success: function (result) {
+            console.log("token")
             localStorage.setItem('token', result)
             seeMain()
         },

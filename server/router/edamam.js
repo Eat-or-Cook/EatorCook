@@ -1,8 +1,7 @@
 const router = require('express').Router()
-const ControllerRecipe = require('../controllers/controller')
+const ControllerRecipe = require('../controllers/edamamController')
 const auth = require('../middlewares/authentication')
 
-router.get('/', ControllerRecipe.find)
-router.get('/', auth, ControllerRecipe.find)
+router.get('/', auth, ControllerRecipe.findRecipes)
 
 module.exports = router

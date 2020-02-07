@@ -40,9 +40,11 @@ $(document).on('click', '#slotButton', function(e) {
         $('#favRec').hide(); 
     }, 1000)
     
-    if (random == 1) {
+    if (2 == 1) {
         // restaurant function
+        $('#viewZomato').show()
     } else {
         //recipe function
+        $('#viewRecipe').show()
     }
 })
