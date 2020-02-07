@@ -22,7 +22,7 @@ var data = []
     $zomato.hide()
     $google.show()
     token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTU4MTA0MjU5NH0.Lv4R7J2cahV4d7S_rrN-QtF3fD6iq__yS9DTxQ02nlo"
-    $.ajax(`http://localhost:3001/zomato/${id}`,{
+    $.ajax(`http://localhost:3000/zomato/${id}`,{
       method: "GET",
       headers:{
         token
@@ -183,7 +183,7 @@ var data = []
   }
 
   function searchZomato(start=0){
-    $.ajax(`http://localhost:3001/zomato?start=${start}`,{
+    $.ajax(`http://localhost:3000/zomato?start=${start}`,{
       method: "GET"
     })
     .done(function(result){

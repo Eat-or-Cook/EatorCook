@@ -1,0 +1,91 @@
+#main-header {
+    background-color: rgba(0, 0, 0, 0.774);
+    height: 10vh;
+}
+
+#main-header-logo {
+    width: 25%;
+}
+
+.favCol {
+    background-color: rgba(0, 0, 0, 0.753);
+    height: 90vh;
+}
+
+.favourites {
+    border: white solid 1px;
+    height: 50%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.favTitle {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.lovedImg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#slotMachine {
+    height: 50%;
+    width: 100%;
+    margin-top: 50%;
+    padding-top: 10%;
+    background-color: rgba(97, 50, 42, 0.829);
+    border-radius: 15px;
+}
+
+#slotImage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#slotButtonSpot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.slotCol {
+    height: 90vh;
+}
+
+#slotMachineImg {
+    max-width: 80%;
+    max-height: 30%;
+}
+
+#slotButton {
+    border: none;
+    border-radius: 30px;
+    background-color: #fa4d09;
+    color: white;
+    font-size: large;
+    height: 7vh;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#slotButton:hover {
+    background-color: #b63400;
+}
+
+#logoutButton {
+    border: none;
+    height: 5vh;
+    widows: 20vw;
+    margin-top: 1%;
+    margin-right: 1%;
+    border-radius: 15px;
+    background-color: white;
+}
+
+#logoutButton:hover {
+    background-color: rgb(170, 170, 170);
+}

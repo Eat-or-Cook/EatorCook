@@ -90,3 +90,15 @@ body{
   #registerForm {
     animation-duration: 0.5s;
   }
+
+  #registerButton {
+    border-radius: 10px;
+    height: 4vh;
+    width: 5vw;
+    border: none;
+    background-color: #fa4d09;
+  }
+
+  #registerButton:hover {
+    background-color: #b63400;
+  }

@@ -1,10 +1,7 @@
 let startClicked = 0
 let registerForm = false
 
-$(document).ready(function () {
-    $('#signForm').hide()
-    $('#registerForm').hide()
-})
+
 
 $(document).on('click', '#backToLogin', function(e) {
     e.preventDefault()
@@ -74,6 +71,7 @@ function login(data) {
         data: data,
         success: function (result) {
             localStorage.setItem('token', result)
+            seeMain()
         },
         fail: function(err) {
             console.log(err)
@@ -88,6 +86,7 @@ function register(data) {
         data: data,
         success: function (result) {
             localStorage.setItem('token', result)
+            seeMain()
         },
         fail: function(err) {
             console.log(err)
@@ -95,16 +94,35 @@ function register(data) {
     })
 }
 
-function googleSignIn(data) {
+function onSignIn(googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
     $.ajax({
         url: 'http://localhost:3000/googleSignIn',
         method: 'post',
-        data: data,
+        data: {
+            gToken: id_token
+        },
         success: function (result) {
             localStorage.setItem('token', result)
+            seeMain()
         },
         fail: function(err) {
             console.log(err)
         }
     })
+}
+
+$(document).on('click', '#logoutButton', function(e){
+    e.preventDefault()
+    logout()
+})
+
+function logout() {
+    localStorage.clear()
+    var auth2 = gapi.auth2.getAuthInstance();
+    startClicked = 0
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    seeLogin()
 }
