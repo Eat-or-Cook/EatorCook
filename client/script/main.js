@@ -37,6 +37,24 @@ function seeLogin() {
     }, 500)
 }
 
+$(document).on('click', '#backHome', function(e) {
+    e.preventDefault()
+    $('#slotSpot').addClass('flipInX')
+    $('#slotSpot').removeClass('flipOutX')
+    $('#favRest').addClass('slideInUp')
+    $('#favRest').removeClass('slideOutUp')
+    $('#favRec').addClass('slideInDown')
+    $('#favRec').removeClass('slideOutDown')
+    
+    setTimeout(function(){ 
+        $('#viewZomato').fadeOut();
+        $('#slotSpot').show(); 
+        $('#favRest').show();
+        $('#favRec').show(); 
+    }, 500)
+
+})
+
 $(document).on('click', '#slotButton', function(e) {
     e.preventDefault()
     let random = Math.round(Math.random())
@@ -52,7 +70,7 @@ $(document).on('click', '#slotButton', function(e) {
         $('#favRec').hide(); 
     }, 1000)
     
-    if (2 == 1) {
+    if (1 == 1) {
         // restaurant function
         $('#viewZomato').show()
     } else {
