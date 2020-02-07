@@ -1,0 +1,92 @@
+body{
+    background-image: url('./src/wallpaper.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+#startButton {
+    border: none;
+    background-color: #753C33;
+    border-radius: 50%;
+    width: 9vw;
+    height: 16vh;
+}
+
+#startButton:hover {
+    transform: rotateY(520deg);
+    transition: 1s;
+}
+
+#signForm {
+    margin-top: 130%;
+    height: 40%;
+    background-color: #000000a4;
+    border-radius: 0 15% 15% 0;
+    z-index: 1;
+}
+
+#registerForm {
+    margin-top: 130%;
+    height: 40%;
+    background-color: #000000a4;
+    border-radius: 0 15% 15% 0;
+    z-index: 1;
+}
+
+#signForm {
+    animation-duration: 0.5s;
+    padding-top: 4%;
+  }
+
+  input {
+    border: none;
+    background: #753C33;
+    border-radius: 0 50px 50px 0;
+    height: 5vh;
+    width: 60%;
+    color: white;
+    text-align: center;
+}
+
+.formLabel {
+    color: white;
+    font-size: 2rem;
+    margin: 0;
+    padding-left: 4%;
+    background: #753C33;
+    border-radius: 50px 0 0 50px;
+    width: 15%;
+}
+
+::placeholder {
+    color: white;
+    opacity: 1;
+    text-align: center;
+  }
+
+  #signInButton {
+      border-radius: 10px;
+      height: 4vh;
+      width: 5vw;
+      border: none;
+      background-color: #fa4d09;
+  }
+
+  #signInButton:hover {
+      background-color: #b63400;
+  }
+
+  #backToLogin {
+    float: left;
+    color: white;
+  }
+
+  #backToLogin:hover {
+      color: #757575;
+      cursor: pointer;
+  }
+
+  #registerForm {
+    animation-duration: 0.5s;
+  }
