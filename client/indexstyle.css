@@ -17,6 +17,10 @@
     height: 50%;
     width: 100%;
     border-radius: 15px;
+    overflow: scroll;
+    color: #fa4d09;
+    text-align: left;
+    padding: 5%;
 }
 
 .favTitle {
@@ -88,4 +92,10 @@
 
 #logoutButton:hover {
     background-color: rgb(170, 170, 170);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.774);
 }
