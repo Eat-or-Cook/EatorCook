@@ -6,7 +6,7 @@ router.get('/', controller.findAllFavRecipes)
 
 router.get('/:id', controller.finOneFavRecipe)
 
-router.post('/', favRecipeCheck, controller.addFavRecipe)
+router.post('/', controller.addFavRecipe)
 
 router.delete('/:id', controller.removeFavRecipe)
 

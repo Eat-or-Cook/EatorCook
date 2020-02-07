@@ -1,0 +1,43 @@
+<title>Find Recipes</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+.mb-3{
+margin:50px;
+}
+.div.card.mb-3 {
+background-color: #dc3545!important;
+margin-left: 30px;
+}
+.card {
+  display: inline-block; 
+  width: 90%; 
+}
+#form-search {
+background-color: #dc3545!important;
+height: 60px;
+}
+.card-title {
+color: white  ;
+text-overflow: clip;
+}
+</style>
+<body class="bg-light">
+<form class="form-inline" id="form-search">
+    <div class="form-group">
+      <label>Find Food</label>
+      <input type="text" id="input-search" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+    </div>
+    <button type="submit" id="btn-search">Search</button>
+  </form>
+
+<div class="card-columns" id="cardColumns">
+    
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="./script/recipe.js"></script>
+</html>
