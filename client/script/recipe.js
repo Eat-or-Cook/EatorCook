@@ -17,12 +17,11 @@ $("#form-search").on("submit", function(e) {
   console.log($("#input-search").val())
   $.ajax({
     type: "GET",
-    url: `http://localhost:3000`,
+    url: `http://localhost:3000/edamam`,
     headers: {
-      token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJtYXJjZWwubXAxMDAwQGdtYWlsLmNvbSIsImlhdCI6MTU4MTA1MzU0Nn0.zhwcN_bXJKRslKfbNFft9kzjBnIVKNSsL3ap_UzwxqU`
+      token: localStorage.getItem('token')
     },
     data:{
-
       find: $("#input-search").val()
     }
   })
@@ -39,52 +38,42 @@ $("#form-search").on("submit", function(e) {
         <div class="card-body" style="width: 18rem;background-color: #dc3545!important;" >
           <h5 class="card-title" style="background-color: #dc3545!important;color=white;">${element.label}</h5>
           <p class="card-text" style="color: white;">${strIngredient}</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
         <div class="card-footer text-center" id="likeorDislike">
-                  <button class="btn text-danger" onClick="like(${element.label})">Like</button>
-                  </div>          
-              </div>`
-        )
+            <button class="btn btn-light" onClick="like('${element.label}')">Like</button>
+            </div>          
+        </div>`
+      )
 
                   // <button class="btn text-danger" id="btn-dislike" data-id="btn-dislike-${element.label}" onClick="">Dislike</button>
     });
-      
-    // console.log(strIngredient)
+  })
+  .fail(err=>{
+      console.log(err)
+  })
 })
-.fail(err=>{
-    console.log(err, "<<<<<<<<")
-})
- 
-})
-$(document).ready()
+
 function like(label) {
     $.ajax({
-      method: "POST",
-      url:`http://localhost:3000`,
-      headers: {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJtYXJjZWwubXAxMDAwQGdtYWlsLmNvbSIsImlhdCI6MTU4MTA1MzU0Nn0.zhwcN_bXJKRslKfbNFft9kzjBnIVKNSsL3ap_UzwxqU"
-      },
-      data:{
-        food: label
-    }
-})
+          method: "POST",
+          url:`http://localhost:3000/recipe`,
+          headers: {
+            token: localStorage.getItem('token')
+          },
+          data:{
+            food: label
+          }
+    })
     .done(result=>{
-        $("#likeorDislike").empty()
-        $("#likeorDislike").append(
-        `<button class="btn text-danger" onClick="dislike(${label})">Dislike</button>`
-        )
+        console.log(result)
     })
     .fail(err=>{
-        console.log
+        console.log(err)
     })
 }
 
 function dislike(label) {
-    $.ajax({
-        method:"DELETE",
-        url:`http://localhost:3000`,
-    })    
+     
 }
 
 // recipes()
