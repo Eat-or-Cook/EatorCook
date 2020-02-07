@@ -2,7 +2,6 @@ const { Restaurant, UserRestaurant, User } = require('../models')
 
 class RestaurantController {
     static addFavRestaurant(req, res, next) {
-        let restaurantInfo
         Restaurant.findOne({
             where: {
                 name: req.body.name
@@ -10,8 +9,7 @@ class RestaurantController {
         })
         .then(restaurantData => {
             if(restaurantData){
-                restaurantInfo = restaurantData
-                return
+                return restaurantData
             } else {
                 return Restaurant.create({
                     name: req.body.name
@@ -19,11 +17,11 @@ class RestaurantController {
             }
         })
         .then(result => {
-            restaurantyInfo = result
-            UserRestaurant.create({
-                UserId: req.loggedUser.id,
-                RestaurantId: restaurantInfo.id
-            })
+            let restaurantInfo = result
+            return UserRestaurant.create({
+                    UserId: req.loggedUser.id,
+                    RestaurantId: restaurantInfo.id
+                })
         })
         .then(finalResult => {
             res.status(201).json(finalResult)
