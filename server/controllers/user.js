@@ -40,7 +40,6 @@ class UserController {
                         message: 'Invalid email or password'
                     })
                 }
-
             })
             .then(result => {
                 if (result) {
