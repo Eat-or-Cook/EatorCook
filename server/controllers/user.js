@@ -66,7 +66,7 @@ class UserController {
         let payload
         client.verifyIdToken({
             idToken: req.body.gToken,
-            audience: process.env.CLIENT_ID
+            audience: process.env.CLIENT_ID 
         })
             .then(ticket => {
                 payload = ticket.getPayload()

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="./map.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/12d44f92ab.js" crossorigin="anonymous"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Eat out or Cook</title>
@@ -119,7 +121,38 @@
             </div>
         </div>
     </div>
-
+    <div id="viewZomato" style="display:none;">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-grow" role="status" style="width: 100vh; height: 100vh;">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="row" style="height:100vh;display:none;" id="google-map">
+            <div class="col-8">
+                <div id="map"></div>
+            </div>
+            <div class="col-4" style="left:auto;top:0;" id='detail'>
+            </div>
+        </div>
+        <div class="container" id="zomato-list">
+            <div class="card-columns mt-5" id="zomato-items">
+                
+            </div>
+        </div>
+    </div>
+    <div id="viewRecipe" style="display:none">
+        <form class="form-inline" id="form-search">
+            <div class="form-group">
+                <label>Find Food</label>
+                <input type="text" id="input-search" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+            </div>
+            <button type="submit" id="btn-search">Search</button>
+        </form>
+        
+        <div class="card-columns" id="cardColumns">
+            
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -130,6 +163,10 @@
         crossorigin="anonymous"></script>
     <script src="./script/main.js"></script>
     <script src="./script/login.js"></script>
+    <script src="./script/zomato.js"></script>
+    <script src="./script/google.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvLqMg-dfr3ax6gk8ONyI9yVuZ9TTbdy4&libraries=places&callback=initMap"
+        async defer></script>
 </body>
 
 </html>

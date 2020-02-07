@@ -5,6 +5,11 @@ body{
     height: 100vh;
 }
 
+#viewZomato{
+  height: 90vh;
+  overflow:scroll;
+}
+
 #startButton {
     border: none;
     background-color: #753C33;
