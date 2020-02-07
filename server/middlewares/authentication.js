@@ -7,7 +7,6 @@ module.exports = function (req, res, next){
         try {
             require('dotenv').config()
             req.loggedUser = jwt.verify(req.headers.token, process.env.JWT_SECRET)
-
             next()
         }
         catch(e){

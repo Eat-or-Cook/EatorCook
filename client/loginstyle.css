@@ -10,6 +10,11 @@ body{
   overflow:scroll;
 }
 
+#viewRecipe{
+  height: 90vh;
+  overflow:scroll;
+}
+
 #startButton {
     border: none;
     background-color: #753C33;

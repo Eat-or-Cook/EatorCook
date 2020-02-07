@@ -147,16 +147,18 @@
         </div>
     </div>
     <div id="viewRecipe" style="display:none">
-        <form class="form-inline" id="form-search">
-            <div class="form-group">
-                <label>Find Food</label>
-                <input type="text" id="input-search" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
-            </div>
-            <button type="submit" id="btn-search">Search</button>
-        </form>
-        
-        <div class="card-columns" id="cardColumns">
+        <div class="container">
+            <form class="form-inline text-light bg-danger" id="form-search">
+                <div class="form-group p-4">
+                    <label>Find Food</label>
+                    <input type="text" id="input-search" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+                </div>
+                <button type="submit" id="btn-search" class="btn btn-light">Search</button>
+            </form>
             
+            <div class="card-columns m-4" id="cardColumns">
+                
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -169,6 +171,7 @@
         crossorigin="anonymous"></script>
     <script src="./script/main.js"></script>
     <script src="./script/login.js"></script>
+    <script src="./script/recipe.js"></script>
     <script src="./script/zomato.js"></script>
     <script src="./script/google.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvLqMg-dfr3ax6gk8ONyI9yVuZ9TTbdy4&libraries=places&callback=initMap"

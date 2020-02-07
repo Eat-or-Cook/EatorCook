@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const controller = require('../controllers/recipe')
 const { favRecipeCheck } = require('../middlewares/favCheck')
+const auth = require('../middlewares/authentication')
 
-router.get('/', controller.findAllFavRecipes)
+router.get('/', auth,controller.findAllFavRecipes)
 
 router.get('/:id', controller.finOneFavRecipe)
 

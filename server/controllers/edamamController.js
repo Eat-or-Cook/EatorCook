@@ -6,31 +6,25 @@ const recipe = require('./recipe')
 class ControllerRecipe {
 
     static findRecipes (req, res, next){
-        let { find } = req.query
-        let token = 
-        findRecipes(find)
+      let { find } = req.query
+      findRecipes(find)
         .then(resp => {
             let result = []
             let objResult = {}
             let objTotalNutrients = {}
             resp.data.hits.forEach(foodData => {
-                objResult = { ingredient : foodData.recipe.ingredientLines , label : foodData.recipe.label , image : foodData.recipe.image }
-                // objTotalNutrients = {totalNutrients : foodData.recipe.totalNutrients}
-                // console.log({ ingredient : foodData.recipe.ingredientLines , label : foodData.recipe.label , image : foodData.recipe.image, totalNutrients : foodData.recipe.totalNutrients });
-                result.push(objResult)
-                // for (const key in foodData.recipe.totalNutrients) {
-                //         for (const keyu in foodData.recipe.totalNutrients[key]) {
-                //             console.log(foodData.recipe.totalNutrients[key][keyu])
-                //         }
-                //     }
-                // }
+                objResult = { ingredient : foodData.recipe.ingredientLines , label : foodData.recipe.label , image : foodData.recipe.image }           
                 // result.push(objResult)
-            });
+                for (const key in foodData.recipe.totalNutrients) {
+                        for (const keyu in foodData.recipe.totalNutrients[key]) {
+                            console.log(foodData.recipe.totalNutrients[key][keyu])
+                        }
+                    }
+                result.push(objResult)
+            })
             res.send(result)
         })
-        .catch(err=>{
-            res.send(err)
-        })
+        .catch(next)
         // res.send(find)
     }
 
